@@ -1,15 +1,24 @@
-/********************************************************/
-/* The ArchC i8051 functional model.                    */
-/* Author: Tiago Sampaio Lins and Silvio Veloso         */
-/*                                                      */
-/* For more information on ArchC, please visit:         */
-/* http://www.archc.org                                 */
-/*                                                      */
-/* The ArchC Team                                       */
-/* Computer Systems Laboratory (LSC)                    */
-/* IC-UNICAMP                                           */
-/* http://www.lsc.ic.unicamp.br                         */
-/********************************************************/
+/**
+ * @file      file?
+ * @author    Tiago Sampaio Lins
+ *            Silvio Veloso
+ *
+ *            The ArchC Team
+ *            http://www.archc.org/
+ *
+ *            Computer Systems Laboratory (LSC)
+ *            IC-UNICAMP
+ *            http://www.lsc.ic.unicamp.br/
+ *
+ * @version   version?
+ * @date      date?
+ * 
+ * @brief     The ArchC i8051 functional model.
+ * 
+ * @attention Copyright (C) 2002-2006 --- The ArchC Team
+ *
+ */
+
 AC_ISA(i8051){
 
   ac_format Type_3bytes = "%op:8 %byte2:8 %byte3:8";

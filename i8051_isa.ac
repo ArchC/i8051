@@ -2,6 +2,8 @@
  * @file      file?
  * @author    Tiago Sampaio Lins
  *            Silvio Veloso
+ *            Marcus do Nascimento (Assembly Syntax)
+ *            Alexandro (Assembly Syntax)
  *
  *            The ArchC Team
  *            http://www.archc.org/
@@ -18,74 +20,51 @@
  * @attention Copyright (C) 2002-2006 --- The ArchC Team
  *
  */
+ 
+AC_ISA(i8051)
+{
+ ac_helper
+ {
+  sc_uint<17> pc;
+  int reg_indx;
+  unsigned long pc_stability;
+  unsigned long old_pc;
+  unsigned long curr_pc;
+ };
 
-AC_ISA(i8051){
-
-  ac_format Type_3bytes = "%op:8 %byte2:8 %byte3:8";
-
-  ac_format Type_2bytes = "%op:8 %byte2:8";
-
-  ac_format Type_OP_R = "%reg:3 %op1:5";
-
-  ac_format Type_IBRCH = "%op2:5 %page:3 %addr0:8";
-
-  ac_format Type_1byte = "%op:8";
-
-  ac_format Type_3bytesReg = "%reg2:3 %op3:5 %data:8 %reladd:8";
-
-  ac_format Type_2bytesReg = "%reg2:3 %op3:5 %addr:8";
-
-
-
-  ac_instr<Type_OP_R> add_ar, addc_ar;
-
-
-  ac_instr<Type_OP_R> subb_ar, anl_ar, orl_ar, xch_ar, xrl_ar;
+ ac_format Type_3bytes = "%op:8 %byte2:8 %byte3:8";
+ ac_format Type_2bytes = "%op:8 %byte2:8";
+ ac_format Type_OP_R = "%op1:5 %reg:3";
+ ac_format Type_IBRCH = "%page:3 %op2:5 %addr0:8";
+ ac_format Type_1byte = "%op:8";
+ ac_format Type_3bytesReg = "%op3:5 %reg2:3 %data:8 %reladd:8";
+ ac_format Type_2bytesReg = "%op3:5 %reg2:3 %addr:8";
 
 
-  ac_instr<Type_OP_R> mov_ar, mov_ra, inc_r, dec_r;
-
-
-  ac_instr<Type_IBRCH> acall, ajmp;
-
-
-  ac_instr<Type_3bytes> cjne_addr, cjne_data, anl_iram_data, orl_iram_data, xrl_iram_data, mov_iram_iram,
-
-                        cjne_arr_R0, cjne_arr_R1, djnz_iram_reladd, lcall, ljmp, mov_dptr_data, mov_iram_data,
-
-                        jb, jnb, jbc;
-
-
-  ac_instr<Type_2bytes> clr_bit, pop, push, dec_iram, inc_iram, add_a_data, addc_a_data, anl_iram_a, orl_iram_a,
-
-                        xrl_iram_a, anl_a_data, orl_a_data, xrl_a_data, anl_a_iram, orl_a_iram, xrl_a_iram, anl_c_bit,
-
-                        anl_c_nbit, orl_c_bit, orl_c_nbit, cpl_bit, mov_arr_R0_data, mov_arr_R1_data, mov_arr_R0_iram,
-
-                        mov_arr_R1_iram, mov_a_data, mov_a_iram, mov_iram_a, mov_c_bit, mov_bit_c, mov_iram_arr_R0,
-
-                        mov_iram_arr_R1, jc, jnc, jz, jnz, setb_bit, sjmp, subb_a_data, subb_a_iram, xch_a_iram,
-
-                        add_a_iram, addc_a_iram;
-
-
-  ac_instr<Type_1byte> cpl_a, ret, rr_a, rrc_a, rl_a, rlc_a, mul, add_arr_R0, add_arr_R1, addc_arr_R0, addc_arr_R1,
-
-                       anl_arr_R0, anl_arr_R1, orl_arr_R0, orl_arr_R1, xrl_arr_R0, xrl_arr_R1, clr_c, clr_a, cpl_c,
-
-                       dec_a, dec_arr_R0, dec_arr_R1, div, inc_a, inc_arr_R0, inc_arr_R1, inc_dptr, mov_arr_R0_a,
-
-                       mov_arr_R1_a, mov_a_arr_R0, mov_a_arr_R1, jmp, nop, setb_c, swap, xchd_R0, xchd_R1, subb_a_arr_R0,
-
-                       subb_a_arr_R1, xch_arr_R0, xch_arr_R1, movc_dptr, movc_pc, movx_dptr_a, movx_r0_a, 
-		       
-		       movx_r1_a, reti, da, movx_a_dptr, movx_a_R0, movx_a_R1;
-
-
-  ac_instr<Type_3bytesReg> cjne_r;
-
-
-  ac_instr<Type_2bytesReg> djnz_r, mov_r_data, mov_r_iram, mov_iram_r;
+ ac_instr<Type_OP_R> add_ar, addc_ar, anl_ar, dec_r, inc_r, mov_ar, mov_ra, orl_ar,
+                     subb_ar, xch_ar, xrl_ar;
+ ac_instr<Type_IBRCH> acall, ajmp;
+ ac_instr<Type_3bytes> anl_iram_data, cjne_addr, cjne_data, cjne_arr_R0, cjne_arr_R1,
+                       djnz_iram_reladd, jb, jbc, jnb, lcall, ljmp, mov_iram_iram,
+                       mov_iram_data, mov_dptr_data, orl_iram_data, xrl_iram_data;
+ ac_instr<Type_2bytes> add_a_data, add_a_iram, addc_a_data, addc_a_iram, anl_a_iram,
+                       anl_a_data, anl_iram_a, anl_c_bit, anl_c_nbit, clr_bit, cpl_bit,
+                       dec_iram, inc_iram, jc, jnc, jnz, jz, mov_a_iram, mov_a_data,
+                       mov_iram_a, mov_iram_arr_R0, mov_iram_arr_R1, mov_arr_R0_iram,
+                       mov_arr_R1_iram, mov_arr_R0_data, mov_arr_R1_data, mov_c_bit,
+                       mov_bit_c, orl_a_iram, orl_a_data, orl_iram_a, orl_c_bit,
+                       orl_c_nbit, pop, push, setb_bit, sjmp, subb_a_iram, subb_a_data,
+                       xch_a_iram, xrl_a_iram, xrl_a_data, xrl_iram_a;
+ ac_instr<Type_1byte> add_arr_R0, add_arr_R1, addc_arr_R0, addc_arr_R1, anl_arr_R0,
+                      anl_arr_R1, clr_a, clr_c, cpl_a, cpl_c, da, dec_a, dec_arr_R0,
+                      dec_arr_R1, div, inc_a, inc_arr_R0, inc_arr_R1, inc_dptr, jmp,
+                      mov_a_arr_R0, mov_a_arr_R1, mov_arr_R0_a, mov_arr_R1_a, movc_dptr,
+                      movc_pc, movx_a_R0, movx_a_R1, movx_a_dptr, movx_r0_a, movx_r1_a,
+                      movx_dptr_a, mul, nop, orl_arr_R0, orl_arr_R1, ret, reti, rl_a,
+                      rlc_a, rr_a, rrc_a, setb_c, subb_a_arr_R0, subb_a_arr_R1, swap,
+                      xch_arr_R0, xch_arr_R1, xchd_R0, xchd_R1, xrl_arr_R0, xrl_arr_R1;
+ ac_instr<Type_3bytesReg> cjne_r;
+ ac_instr<Type_2bytesReg> djnz_r, mov_r_iram, mov_r_data, mov_iram_r;
 
 
 

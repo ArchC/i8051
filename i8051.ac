@@ -30,8 +30,7 @@ AC_ARCH(i8051){
   ARCH_CTOR(i8051) {
 
     ac_isa("i8051_isa.ac");
-    set_endian("little");
+    set_endian("big");
 
   };
 };
-

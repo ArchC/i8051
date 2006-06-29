@@ -27,6 +27,7 @@ Version 0.3.3:
 - Model now uses ac_helper
 - Multiple instantiation is working normally
 - Added optional debug code
+- Model is now big endian (some formats fields were inverted)
 
 
 Version 0.3.2:

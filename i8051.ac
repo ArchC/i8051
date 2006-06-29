@@ -1,5 +1,5 @@
 /**
- * @file      file?
+ * @file      i8051.ac
  * @author    Tiago Sampaio Lins
  *            Silvio Veloso
  *
@@ -10,8 +10,8 @@
  *            IC-UNICAMP
  *            http://www.lsc.ic.unicamp.br/
  *
- * @version   version?
- * @date      date?
+ * @version   1.0
+ * @date      Thu, 29 Jun 2006 14:49:07 -0300
  * 
  * @brief     The ArchC i8051 functional model.
  * 

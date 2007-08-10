@@ -1,0 +1,22 @@
+
+ac_modifier_encode(high)
+{
+  reloc->output = reloc->input >> 8;
+}
+
+
+ac_modifier_decode(high)
+{
+}
+
+
+ac_modifier_encode(pcrel)
+{
+  reloc->output = (reloc->input - (reloc->address + reloc->addend));
+}
+
+
+ac_modifier_decode(pcrel)
+{
+  reloc->output = reloc->input + reloc->address + reloc->addend;
+}

@@ -22,6 +22,11 @@ For more information visit http://www.archc.org
 CHANGELOG:
 ==========
 
+Version 0.3.4-archc2.0:
+
+. Added binary utilities information to the ISA description
+
+
 Version 0.3.3-archc2.0beta3:
 
 - Model now uses ac_helper
